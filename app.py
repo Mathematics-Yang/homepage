@@ -14,57 +14,94 @@ import calendar
 from datetime import datetime, timedelta
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# 全局缓存
-_cache = {
-    'github_info': None,
-    'cache_time': 0
-}
-CACHE_TTL = 600  # 缓存 10 分钟
 
 
 # 读取配置文件
 def load_config():
     global config
+    config_path = os.path.join(BASE_DIR, 'config.json')
+    default_config_path = os.path.join(BASE_DIR, 'default', 'default_config.json')
+    
     try:
-        with open('config.json', 'r', encoding='utf-8') as f:
+        with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
     except FileNotFoundError:
-        default_config_path = os.path.join('default', 'default_config.json')
         if os.path.exists(default_config_path):
-            print(f"config.json不存在，从{default_config_path}复制默认配置")
-            shutil.copy2(default_config_path, 'config.json')
-            with open('config.json', 'r', encoding='utf-8') as f:
+            print(f"config.json不存在，从默认配置读取")
+            with open(default_config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
-            if 'background' in config and 'image' in config['background']:
-                background_image = config['background']['image']
-                if not os.path.exists(background_image) and os.path.exists(os.path.join('default', background_image)):
-                    print(f"{background_image}不存在，从default文件夹复制")
-                    shutil.copy2(os.path.join('default', background_image), background_image)
+            # Vercel 文件系统只读，不尝试复制
+            try:
+                shutil.copy2(default_config_path, config_path)
+            except Exception:
+                pass
         else:
-            print("default/default_config.json不存在，使用内置默认配置")
+            print("使用内置默认配置")
             config = {
-                "github_url": "https://github.com/example",
+                "github_url": "https://github.com/Mathematics-Yang",
                 "dark_mode": "auto",
-                "name": "Example User",
-                "bio": "Python Developer",
+                "name": "Jianan Yang",
+                "bio": "Graduate Student @ XJTU",
                 "introduction_file": "Introduction.md",
                 "github_token": "",
                 "theme": {
                     "primary_color": "#6a11cb",
-                    "secondary_color": "#2575fc"
+                    "secondary_color": "#2575fc",
+                    "dark_primary_color": "#a855f7",
+                    "dark_secondary_color": "#60a5fa"
                 },
                 "background": {
                     "image": "background.png",
                     "blur": 8,
                     "overlay_opacity": 0.6,
-                    "overlay_color": "#121212"
-                }
+                    "overlay_color": "#121212",
+                    "dark_overlay_color": "#000000"
+                },
+                "contact": {}
             }
-            with open('config.json', 'w', encoding='utf-8') as f:
-                json.dump(config, f, indent=2, ensure_ascii=False)
+    
+    # 确保所有必要字段存在，防止模板报错
+    if 'theme' not in config:
+        config['theme'] = {}
+    theme_defaults = {
+        'primary_color': '#6a11cb',
+        'secondary_color': '#2575fc',
+        'dark_primary_color': '#a855f7',
+        'dark_secondary_color': '#60a5fa'
+    }
+    for key, value in theme_defaults.items():
+        if key not in config['theme']:
+            config['theme'][key] = value
+    
+    if 'background' not in config:
+        config['background'] = {}
+    bg_defaults = {
+        'image': 'background.png',
+        'blur': 8,
+        'overlay_opacity': 0.6,
+        'overlay_color': '#121212',
+        'dark_overlay_color': '#000000'
+    }
+    for key, value in bg_defaults.items():
+        if key not in config['background']:
+            config['background'][key] = value
+    
+    if 'contact' not in config:
+        config['contact'] = {}
 
-app = Flask(__name__)
-load_config()  # 直接在模块加载时执行
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates')
+)
+load_config()
+
+# 全局缓存
+_cache = {
+    'github_info': None,
+    'cache_time': 0
+}
+CACHE_TTL = 600
 
 # 创建通用的GitHub API请求函数
 def make_github_request(url, timeout=10):
@@ -76,24 +113,20 @@ def make_github_request(url, timeout=10):
         github_token = os.environ.get('GH_TOKEN', '') or os.environ.get('GITHUB_TOKEN', '')
         
         if not github_token:
-            token_file = os.path.join(app.root_path, 'github_token.txt')
+            token_file = os.path.join(BASE_DIR, 'github_token.txt')
             try:
                 if os.path.exists(token_file):
                     with open(token_file, 'r', encoding='utf-8') as f:
                         github_token = f.read().strip().replace('"', '').replace("'", '')
                 else:
                     github_token = config.get('github_token', '')
-            except Exception as e:
+            except Exception:
                 github_token = config.get('github_token', '')
         
         if github_token:
             headers['Authorization'] = f'token {github_token}'
         
         response = requests.get(url, headers=headers, timeout=timeout, verify=False)
-        
-        if response.status_code == 403 and 'rate limit' in response.text.lower():
-            print("GitHub API 速率限制已达")
-        
         return response
     except Exception as e:
         print(f"GitHub API 请求异常: {e}")
@@ -931,9 +964,9 @@ def get_readme_content(username):
 def get_local_readme():
     try:
         introduction_file = config.get('introduction_file', 'Introduction.md')
-        if os.path.exists(introduction_file):
-            with open(introduction_file, 'r', encoding='utf-8') as f:
-                # 使用多个扩展来增强 Markdown 转换
+        file_path = os.path.join(BASE_DIR, introduction_file)
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
                 md_text = f.read()
                 return markdown.markdown(
                     md_text,
@@ -945,63 +978,86 @@ def get_local_readme():
                         }
                     }
                 )
-    except Exception:
-        pass
-    
-    # 如果都没有，返回默认信息
+    except Exception as e:
+        print(f"读取本地 README 出错: {e}")
     return "<p>这个人很懒，什么都没有留下～</p>"
 
 @app.route('/')
 def index():
-    global _cache
-    
-    current_time = time.time()
-    
-    # 检查缓存是否有效
-    if _cache['github_info'] and (current_time - _cache['cache_time'] < CACHE_TTL):
-        print("使用缓存的 GitHub 数据")
-        github_info = _cache['github_info']
-    else:
-        print("缓存过期，重新获取 GitHub 数据")
-        github_info = get_github_user_info()
-        _cache['github_info'] = github_info
-        _cache['cache_time'] = current_time
-    
-    # 补全 contact 字段
-    default_contact = {
-        "cv": "", "qq": "", "wechat": "", "bilibili": "",
-        "douyin": "", "xiaohongshu": "", "google_scholar": "", "kaggle": ""
-    }
-    if 'contact' not in config:
-        config['contact'] = default_contact
-    else:
-        for key, value in default_contact.items():
-            if key not in config['contact']:
-                config['contact'][key] = value
+    try:
+        global _cache
+        current_time = time.time()
+        
+        if _cache['github_info'] and (current_time - _cache['cache_time'] < CACHE_TTL):
+            github_info = _cache['github_info']
+        else:
+            github_info = get_github_user_info()
+            _cache['github_info'] = github_info
+            _cache['cache_time'] = current_time
+        
+        # 补全 contact
+        default_contact = {
+            "cv": "", "qq": "", "wechat": "", "bilibili": "",
+            "douyin": "", "xiaohongshu": "", "google_scholar": "", "kaggle": ""
+        }
+        if 'contact' not in config:
+            config['contact'] = default_contact
+        else:
+            for key, value in default_contact.items():
+                if key not in config['contact']:
+                    config['contact'][key] = value
 
-    # 检查背景图片
-    background_image = config.get('background', {}).get('image', 'background.png')
-    possible_paths = [
-        os.path.join(os.getcwd(), background_image),
-        os.path.join(os.getcwd(), 'static', background_image)
-    ]
-    
-    background_exists = False
-    background_path = background_image
-    
-    for path in possible_paths:
-        if os.path.exists(path):
-            background_exists = True
-            if 'static' in path:
-                background_path = f'/static/{background_image}'
-            break
-    
-    return render_template('index.html', 
-                          github_info=github_info, 
-                          config=config,
-                          now=datetime.now(),
-                          background_exists=background_exists,
-                          background_path=background_path)
+        # 检查背景图片
+        background_image = config.get('background', {}).get('image', 'background.png')
+        possible_paths = [
+            os.path.join(BASE_DIR, background_image),
+            os.path.join(BASE_DIR, 'static', background_image)
+        ]
+        
+        background_exists = False
+        background_path = background_image
+        
+        for path in possible_paths:
+            if os.path.exists(path):
+                background_exists = True
+                if 'static' in path:
+                    background_path = f'/static/{background_image}'
+                break
+        
+        return render_template('index.html', 
+                              github_info=github_info, 
+                              config=config,
+                              now=datetime.now(),
+                              background_exists=background_exists,
+                              background_path=background_path)
+    except Exception as e:
+        import traceback
+        error_detail = traceback.format_exc()
+        try:
+            all_files = []
+            for root, dirs, files in os.walk(BASE_DIR):
+                level = root.replace(BASE_DIR, '').count(os.sep)
+                indent = ' ' * 2 * level
+                all_files.append(f'{indent}{os.path.basename(root)}/')
+                subindent = ' ' * 2 * (level + 1)
+                for file in files:
+                    all_files.append(f'{subindent}{file}')
+            files_html = '\n'.join(all_files)
+        except:
+            files_html = '无法读取'
+        
+        return f"""
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="font-family:monospace;padding:40px;max-width:900px;margin:0 auto;">
+        <h1 style="color:red;">❌ 错误</h1>
+        <pre style="background:#fee;padding:20px;border-radius:8px;white-space:pre-wrap;">{error_detail}</pre>
+        <h2>文件结构</h2>
+        <pre style="background:#f0f0f0;padding:20px;border-radius:8px;">{files_html}</pre>
+        <h2>BASE_DIR</h2>
+        <pre style="background:#f0f0f0;padding:20px;border-radius:8px;">{BASE_DIR}</pre>
+        </body></html>
+        """, 500
 
 @app.route('/api/config')
 def get_config():
