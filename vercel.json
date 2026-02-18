@@ -9,14 +9,14 @@
             }
         },
         {
-            "src": "background.png",
+            "src": "background.jpg",
             "use": "@vercel/static"
         }
     ],
     "routes": [
         {
-            "src": "/background.png",
-            "dest": "/background.png"
+            "src": "/background.jpg",
+            "dest": "/background.jpg"
         },
         {
             "src": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|css|js))",
