@@ -1,0 +1,30 @@
+{
+ "github_url": "https://github.com/Mathematics-Yang",
+  "dark_mode": "auto",
+  "name": "Jianan Yang",
+  "bio": "XJTU AI Researcher | LLM & DL Engineer",
+  "introduction_file": "Introduction.md",
+  "theme": {
+    "primary_color": "#6a11cb",
+    "secondary_color": "#2575fc",
+    "dark_primary_color": "#a855f7",
+    "dark_secondary_color": "#60a5fa"
+  },
+  "background": {
+    "image": "background.jpg",
+    "blur": 4,
+    "overlay_opacity": 0.6,
+    "overlay_color": "#f3f4f6",
+    "dark_overlay_color": "#121212"
+  },
+  "contact": {
+    "cv": "",
+    "qq": "",
+    "wechat": "",
+    "bilibili": "https://space.bilibili.com/628717280",
+    "douyin": "",
+    "xiaohongshu": "https://www.xiaohongshu.com/user/profile/5e894c4b0000000001004f65",
+    "google_scholar": "https://scholar.google.com/citations?user=Jh3fyXUAAAAJ&hl=zh-CN&utm_source=github&utm_medium=profile&utm_campaign=homepage",
+    "kaggle": "https://www.kaggle.com/mathematicsyang?utm_source=personal_homepage&utm_medium=referral&utm_campaign=kaggle_profile"
+  }
+}
