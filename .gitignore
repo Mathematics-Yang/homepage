@@ -1,11 +1,13 @@
-/sln# Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
 # 虚拟环境
+.venv/
 venv/
 env/
+home/
 
 # 日志文件
 *.log
@@ -23,10 +25,13 @@ Thumbs.db
 *.sln
 *.sw?
 
-# 构建文件
+# 构建产物
+node_modules/
 build/
 dist/
 *.egg-info/
+static_build/
+static_build1/
 
 # 本地环境变量
 .env
@@ -35,15 +40,12 @@ dist/
 .env.test.local
 .env.production.local
 
-# 静态构建目录
-static_build/
-
 # 临时文件
 *.tmp
 *.temp
 .cache/
 
-# 其他
+# 备份文件
 *.bak
 *.old
 *.backup
@@ -51,20 +53,7 @@ static_build/
 # 敏感文件
 github_token.txt
 
-# 虚拟环境目录
-home/
-
-# 不需要的图片文件
+# 旧文件
 1background.jpg
-
-# 特定配置文件
 config_gmunitx.json
-
-# 旧的静态构建目录
-static_build/
-static_build1/
-
-# 不需要workflows目录
-.github/workflows/
-# 只忽略根目录的 index.html，不忽略 templates 里的
 /index.html

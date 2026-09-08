@@ -1,0 +1,7 @@
+# Local-only credentials and development artifacts
+github_token.txt
+node_modules/
+static_build/
+
+# Keep the editable source image locally; Vercel serves the optimized WebP.
+background.jpg

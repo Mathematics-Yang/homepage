@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "username": "Mathematics-Yang",
+  "generated_at": "2026-09-07T15:10:28.306290Z",
+  "name": "Jianan Yang",
+  "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
+  "total_repos": 11,
+  "total_stars": 79,
+  "popular_repos": [
+    {
+      "name": "cs231n-documents-2025",
+      "html_url": "https://github.com/Mathematics-Yang/cs231n-documents-2025",
+      "stargazers_count": 49,
+      "description": "斯坦福课程 cs231n 2025 年的资料（讲座 PPT、讨论内容、英文版作业、带注释的中文版作业）/Documents for Stanford's CS231n course in 2025 (lecture PPTs, discussion contents, homework in English, and homework in Chinese with annotations)",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2025-08-20T14:05:22Z",
+      "description_zh": "斯坦福 CS231n 2025 课程资料，包括课件、讨论内容及中英文作业。",
+      "description_en": "Course materials for Stanford CS231n 2025, including slides, discussions, and assignments in English and Chinese."
+    },
+    {
+      "name": "deep-learning-from-Scratch",
+      "html_url": "https://github.com/Mathematics-Yang/deep-learning-from-Scratch",
+      "stargazers_count": 15,
+      "description": "鱼书 深度学习入门：基于Python的理论与实践（包含中文版深度学习入门Jupyter Notebook笔记）",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2025-09-12T08:46:54Z",
+      "description_zh": "《深度学习入门：基于 Python 的理论与实现》学习笔记与实践。",
+      "description_en": "Notes and implementations for Deep Learning from Scratch, covering neural-network theory and practice in Python."
+    },
+    {
+      "name": "Toy-MiniMind",
+      "html_url": "https://github.com/Mathematics-Yang/Toy-MiniMind",
+      "stargazers_count": 4,
+      "description": "基于开源项目MiniMind的核心实践打造，在BreakDown-MiniMind版本基础上完成了全面的优化与重构，使用互动笔记本拆解MiniMind代码，从零开始学习大模型知识",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2026-02-12T15:21:16Z",
+      "description_zh": "基于 MiniMind 的重构实践，通过交互式笔记本从零拆解大模型核心代码。",
+      "description_en": "A refactored MiniMind learning project that explains core LLM code step by step through interactive notebooks."
+    },
+    {
+      "name": "PINN-from-Scratch",
+      "html_url": "https://github.com/Mathematics-Yang/PINN-from-Scratch",
+      "stargazers_count": 4,
+      "description": "PINN入门级别代码（以一维热传导方程为例）/PINN from Scratch",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2025-12-12T11:35:11Z",
+      "description_zh": "从零实现物理信息神经网络，以一维热传导方程为示例。",
+      "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation."
+    },
+    {
+      "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
+      "html_url": "https://github.com/Mathematics-Yang/Hsuan-Tien-Lin-s-Machine-Learning-Notes",
+      "stargazers_count": 4,
+      "description": "台湾大学林轩田老师机器学习笔记（机器学习基石、机器学习技法）",
+      "language": null,
+      "pushed_at": "2025-08-21T16:04:41Z",
+      "description_zh": "台湾大学林轩田老师《机器学习基石》与《机器学习技法》课程笔记。",
+      "description_en": "Study notes for Hsuan-Tien Lin's Machine Learning Foundations and Machine Learning Techniques courses."
+    },
+    {
+      "name": "Deep-Learning-Advanced-Natural-Language-Processing",
+      "html_url": "https://github.com/Mathematics-Yang/Deep-Learning-Advanced-Natural-Language-Processing",
+      "stargazers_count": 2,
+      "description": "鱼书 深度学习进阶：自然语言处理（包含中文版深度学习入门Jupyter Notebook笔记）",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2025-10-06T08:08:38Z",
+      "description_zh": "《深度学习进阶：自然语言处理》中文学习笔记与 Jupyter Notebook 实践。",
+      "description_en": "Chinese study notes and Jupyter Notebook exercises for Deep Learning 2: Natural Language Processing."
+    }
+  ],
+  "language_distribution": [
+    {
+      "name": "Jupyter Notebook",
+      "color": "#DA5B0B",
+      "bytes": 24598657,
+      "percentage": 89.3
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "bytes": 2856751,
+      "percentage": 10.4
+    },
+    {
+      "name": "HTML",
+      "color": "#e34c26",
+      "bytes": 57261,
+      "percentage": 0.2
+    },
+    {
+      "name": "Shell",
+      "color": "#89e051",
+      "bytes": 16992,
+      "percentage": 0.1
+    },
+    {
+      "name": "Cython",
+      "color": "#fedf5b",
+      "bytes": 9976,
+      "percentage": 0.0
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "bytes": 988,
+      "percentage": 0.0
+    },
+    {
+      "name": "Dockerfile",
+      "color": "#384d54",
+      "bytes": 193,
+      "percentage": 0.0
+    }
+  ],
+  "star_history": [
+    {
+      "month": "2025-08",
+      "stars": 1
+    },
+    {
+      "month": "2025-09",
+      "stars": 5
+    },
+    {
+      "month": "2025-10",
+      "stars": 14
+    },
+    {
+      "month": "2025-11",
+      "stars": 16
+    },
+    {
+      "month": "2025-12",
+      "stars": 19
+    },
+    {
+      "month": "2026-01",
+      "stars": 28
+    },
+    {
+      "month": "2026-02",
+      "stars": 34
+    },
+    {
+      "month": "2026-03",
+      "stars": 46
+    },
+    {
+      "month": "2026-04",
+      "stars": 59
+    },
+    {
+      "month": "2026-05",
+      "stars": 63
+    },
+    {
+      "month": "2026-06",
+      "stars": 67
+    },
+    {
+      "month": "2026-07",
+      "stars": 75
+    },
+    {
+      "month": "2026-08",
+      "stars": 78
+    },
+    {
+      "month": "2026-09",
+      "stars": 79
+    }
+  ]
+}

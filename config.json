@@ -1,9 +1,13 @@
 {
- "github_url": "https://github.com/Mathematics-Yang",
+  "github_url": "https://github.com/Mathematics-Yang",
   "dark_mode": "auto",
   "name": "Jianan Yang",
-  "bio": "XJTU AI Researcher | LLM & DL Engineer",
+  "bio": "XJTU Graduate Student | Exploring LLMs & Scientific ML",
   "introduction_file": "Introduction.md",
+  "introduction_file_en": "Introduction.md",
+  "introduction_file_zh": "Introduction.zh.md",
+  "tech_stack_file_en": "TechStack.md",
+  "tech_stack_file_zh": "TechStack.zh.md",
   "theme": {
     "primary_color": "#6a11cb",
     "secondary_color": "#2575fc",
@@ -11,13 +15,15 @@
     "dark_secondary_color": "#60a5fa"
   },
   "background": {
-    "image": "background.jpg",
+    "image": "background.webp",
     "blur": 4,
     "overlay_opacity": 0.6,
     "overlay_color": "#f3f4f6",
     "dark_overlay_color": "#121212"
   },
   "contact": {
+    "email": "mailto:jiananyang@stu.xjtu.edu.cn",
+    "orcid": "https://orcid.org/0009-0005-9919-4945",
     "cv": "",
     "qq": "",
     "wechat": "",
@@ -26,5 +32,91 @@
     "xiaohongshu": "https://www.xiaohongshu.com/user/profile/5e894c4b0000000001004f65",
     "google_scholar": "https://scholar.google.com/citations?user=Jh3fyXUAAAAJ&hl=zh-CN&utm_source=github&utm_medium=profile&utm_campaign=homepage",
     "kaggle": "https://www.kaggle.com/mathematicsyang?utm_source=personal_homepage&utm_medium=referral&utm_campaign=kaggle_profile"
-  }
+  },
+  "academic_profile": {
+    "affiliation_zh": "西安交通大学",
+    "affiliation_en": "Xi'an Jiaotong University",
+    "position_zh": "硕士研究生",
+    "position_en": "Graduate Student",
+    "location_zh": "中国 · 西安",
+    "location_en": "Xi'an, China",
+    "status_zh": "欢迎交流与合作",
+    "status_en": "Open to Ideas & Collaboration"
+  },
+  "current_focus": [
+    {
+      "icon": "fa-solid fa-layer-group",
+      "text_zh": "探索大语言模型智能体的长期记忆与角色人格",
+      "text_en": "Exploring long-term memory and persona for LLM agents"
+    },
+    {
+      "icon": "fa-solid fa-code",
+      "text_zh": "使用 PyTorch 学习、复现并构建模型",
+      "text_en": "Learning, reproducing, and building models with PyTorch"
+    },
+    {
+      "icon": "fa-regular fa-comments",
+      "text_zh": "期待有趣的 AI 项目、想法与技术交流",
+      "text_en": "Open to interesting AI projects, ideas, and conversations"
+    }
+  ],
+  "education": [
+    {
+      "institution_zh": "西安交通大学",
+      "institution_en": "Xi'an Jiaotong University",
+      "program_zh": "应用统计 · 硕士",
+      "program_en": "Applied Statistics · M.S.",
+      "period": "2026.09 — 2029.07"
+    },
+    {
+      "institution_zh": "西安交通大学",
+      "institution_en": "Xi'an Jiaotong University",
+      "program_zh": "统计学 · 本科",
+      "program_en": "Statistics · B.S.",
+      "period": "2022.09 — 2026.07"
+    }
+  ],
+  "experience": [
+    {
+      "organization_zh": "MemTensor（记忆张量）",
+      "organization_en": "MemTensor",
+      "role_zh": "大模型部门实习生",
+      "role_en": "LLM Division Intern",
+      "period": "2026.03 — 2026.07"
+    }
+  ],
+  "selected_articles": [
+    {
+      "arxiv_id": "2608.06975",
+      "url": "https://arxiv.org/abs/2608.06975",
+      "code_url": "https://github.com/MemTensor/PHASE-Tree.git",
+      "title_zh": "PHASE-Tree：长程角色扮演对话中的角色状态演化建模",
+      "title_en": "PHASE-Tree: Modeling Character-State Evolution in Long-Horizon Role-Playing Dialogue",
+      "authors_zh": "Bo Tang、Jianan Yang、Junyi Zhu 等",
+      "authors_en": "Bo Tang, Jianan Yang, Junyi Zhu, et al.",
+      "date_zh": "2026 年 8 月 7 日",
+      "date_en": "Aug 7, 2026",
+      "subjects": "cs.CL · cs.AI",
+      "summary_zh": "提出多时间尺度角色状态树，以不可变身份根和可变的人格、会话及当前状态层，建模长程角色扮演中的持续演化，并通过 LongEvoRoleBench 评测演化状态下的生成能力。",
+      "summary_en": "Introduces a multi-timescale character-state tree with an immutable identity root and mutable persona, session, and moment layers, alongside LongEvoRoleBench for evaluating evolved-state generation.",
+      "tags_zh": ["大语言模型智能体", "角色人格", "长期记忆", "角色扮演"],
+      "tags_en": ["LLM Agents", "Persona", "Long-Term Memory", "Role-Playing"]
+    },
+    {
+      "arxiv_id": "2605.19263",
+      "url": "https://arxiv.org/abs/2605.19263",
+      "code_url": "https://github.com/Mathematics-Yang/CGMPINN.git",
+      "title_zh": "从简单到复杂：基于高斯混合模型的课程引导物理信息神经网络",
+      "title_en": "From Simple to Complex: Curriculum-Guided Physics-Informed Neural Networks via Gaussian Mixture Models",
+      "authors_zh": "Jianan Yang、Yiran Wang、Shuai Li 等",
+      "authors_en": "Jianan Yang, Yiran Wang, Shuai Li, et al.",
+      "date_zh": "2026 年 5 月 19 日",
+      "date_en": "May 19, 2026",
+      "subjects": "cs.LG · math.NA",
+      "summary_zh": "提出课程引导高斯混合物理信息神经网络 CGMPINN，根据偏微分方程残差动态识别学习难度，并由易到难调整训练重点，以改善复杂偏微分方程上的收敛与精度。",
+      "summary_en": "Presents CGMPINN, which models spatial learning difficulty from PDE residuals and progressively shifts optimization from easier to harder regions to improve convergence and accuracy on challenging PDEs.",
+      "tags_zh": ["物理信息神经网络", "课程学习", "高斯混合模型", "科学机器学习"],
+      "tags_en": ["PINNs", "Curriculum Learning", "Gaussian Mixtures", "Scientific ML"]
+    }
+  ]
 }
