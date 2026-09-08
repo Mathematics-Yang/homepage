@@ -1,7 +1,7 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-09-07T15:10:28.306290Z",
+  "generated_at": "2026-09-08T16:41:18.708100Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
@@ -15,7 +15,8 @@
       "language": "Jupyter Notebook",
       "pushed_at": "2025-08-20T14:05:22Z",
       "description_zh": "斯坦福 CS231n 2025 课程资料，包括课件、讨论内容及中英文作业。",
-      "description_en": "Course materials for Stanford CS231n 2025, including slides, discussions, and assignments in English and Chinese."
+      "description_en": "Course materials for Stanford CS231n 2025, including slides, discussions, and assignments in English and Chinese.",
+      "language_color": "#da5b0b"
     },
     {
       "name": "deep-learning-from-Scratch",
@@ -25,7 +26,8 @@
       "language": "Jupyter Notebook",
       "pushed_at": "2025-09-12T08:46:54Z",
       "description_zh": "《深度学习入门：基于 Python 的理论与实现》学习笔记与实践。",
-      "description_en": "Notes and implementations for Deep Learning from Scratch, covering neural-network theory and practice in Python."
+      "description_en": "Notes and implementations for Deep Learning from Scratch, covering neural-network theory and practice in Python.",
+      "language_color": "#da5b0b"
     },
     {
       "name": "Toy-MiniMind",
@@ -35,7 +37,8 @@
       "language": "Jupyter Notebook",
       "pushed_at": "2026-02-12T15:21:16Z",
       "description_zh": "基于 MiniMind 的重构实践，通过交互式笔记本从零拆解大模型核心代码。",
-      "description_en": "A refactored MiniMind learning project that explains core LLM code step by step through interactive notebooks."
+      "description_en": "A refactored MiniMind learning project that explains core LLM code step by step through interactive notebooks.",
+      "language_color": "#da5b0b"
     },
     {
       "name": "PINN-from-Scratch",
@@ -45,7 +48,8 @@
       "language": "Jupyter Notebook",
       "pushed_at": "2025-12-12T11:35:11Z",
       "description_zh": "从零实现物理信息神经网络，以一维热传导方程为示例。",
-      "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation."
+      "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation.",
+      "language_color": "#da5b0b"
     },
     {
       "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
@@ -55,7 +59,8 @@
       "language": null,
       "pushed_at": "2025-08-21T16:04:41Z",
       "description_zh": "台湾大学林轩田老师《机器学习基石》与《机器学习技法》课程笔记。",
-      "description_en": "Study notes for Hsuan-Tien Lin's Machine Learning Foundations and Machine Learning Techniques courses."
+      "description_en": "Study notes for Hsuan-Tien Lin's Machine Learning Foundations and Machine Learning Techniques courses.",
+      "language_color": "#94a3b8"
     },
     {
       "name": "Deep-Learning-Advanced-Natural-Language-Processing",
@@ -65,7 +70,8 @@
       "language": "Jupyter Notebook",
       "pushed_at": "2025-10-06T08:08:38Z",
       "description_zh": "《深度学习进阶：自然语言处理》中文学习笔记与 Jupyter Notebook 实践。",
-      "description_en": "Chinese study notes and Jupyter Notebook exercises for Deep Learning 2: Natural Language Processing."
+      "description_en": "Chinese study notes and Jupyter Notebook exercises for Deep Learning 2: Natural Language Processing.",
+      "language_color": "#da5b0b"
     }
   ],
   "language_distribution": [
@@ -73,24 +79,24 @@
       "name": "Jupyter Notebook",
       "color": "#DA5B0B",
       "bytes": 24598657,
-      "percentage": 89.3
+      "percentage": 89.2
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 2856751,
-      "percentage": 10.4
+      "bytes": 2841720,
+      "percentage": 10.3
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "bytes": 57261,
-      "percentage": 0.2
+      "bytes": 114294,
+      "percentage": 0.4
     },
     {
       "name": "Shell",
       "color": "#89e051",
-      "bytes": 16992,
+      "bytes": 16522,
       "percentage": 0.1
     },
     {
@@ -102,7 +108,7 @@
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "bytes": 988,
+      "bytes": 1939,
       "percentage": 0.0
     },
     {
@@ -110,64 +116,13 @@
       "color": "#384d54",
       "bytes": 193,
       "percentage": 0.0
+    },
+    {
+      "name": "CSS",
+      "color": "#563d7c",
+      "bytes": 59,
+      "percentage": 0.0
     }
   ],
-  "star_history": [
-    {
-      "month": "2025-08",
-      "stars": 1
-    },
-    {
-      "month": "2025-09",
-      "stars": 5
-    },
-    {
-      "month": "2025-10",
-      "stars": 14
-    },
-    {
-      "month": "2025-11",
-      "stars": 16
-    },
-    {
-      "month": "2025-12",
-      "stars": 19
-    },
-    {
-      "month": "2026-01",
-      "stars": 28
-    },
-    {
-      "month": "2026-02",
-      "stars": 34
-    },
-    {
-      "month": "2026-03",
-      "stars": 46
-    },
-    {
-      "month": "2026-04",
-      "stars": 59
-    },
-    {
-      "month": "2026-05",
-      "stars": 63
-    },
-    {
-      "month": "2026-06",
-      "stars": 67
-    },
-    {
-      "month": "2026-07",
-      "stars": 75
-    },
-    {
-      "month": "2026-08",
-      "stars": 78
-    },
-    {
-      "month": "2026-09",
-      "stars": 79
-    }
-  ]
+  "star_history": []
 }
