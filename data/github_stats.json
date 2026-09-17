@@ -1,16 +1,16 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-09-08T16:41:18.708100Z",
+  "generated_at": "2026-09-17T04:57:00.491819Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
-  "total_stars": 79,
+  "total_stars": 80,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
       "html_url": "https://github.com/Mathematics-Yang/cs231n-documents-2025",
-      "stargazers_count": 49,
+      "stargazers_count": 50,
       "description": "斯坦福课程 cs231n 2025 年的资料（讲座 PPT、讨论内容、英文版作业、带注释的中文版作业）/Documents for Stanford's CS231n course in 2025 (lecture PPTs, discussion contents, homework in English, and homework in Chinese with annotations)",
       "language": "Jupyter Notebook",
       "pushed_at": "2025-08-20T14:05:22Z",
