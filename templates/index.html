@@ -6,17 +6,13 @@
     <title>{{ github_info.name }} - 个人主页</title>
     <!-- 网页图标，使用用户头像并确保是圆形的 -->
     {% if avatar_path %}
-    <link rel="icon" href="{{ avatar_path }}" type="image/png">
+    <link rel="icon" href="{{ avatar_path }}">
+    <link rel="preload" href="{{ avatar_path }}" as="image" fetchpriority="high">
     {% endif %}
-    <link rel="preconnect" href="https://img.shields.io">
-    <link rel="preconnect" href="https://github-profile-summary-cards.vercel.app">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- 预编译的 Tailwind CSS -->
     <link href="{{ static_css_path }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Academicons for Google Scholar -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- 仅包含本站实际使用图标的本地字体子集 -->
+    <link href="{{ icon_css_path }}" rel="stylesheet">
     <!-- Tailwind Typography Plugin -->
     <script>
         // 应用 Markdown 样式的函数
@@ -215,9 +211,6 @@
         }
     </script>
     <style>
-            .content-auto {
-                content-visibility: auto;
-            }
             .text-gradient {
                 background-clip: text;
                 -webkit-background-clip: text;
@@ -1033,6 +1026,9 @@
                 <img 
                     src="{{ avatar_path }}"
                     alt="{{ github_info.name }}" 
+                    width="32"
+                    height="32"
+                    decoding="async"
                     class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-700 shadow-sm"
                 >
                 {% endif %}
@@ -1075,6 +1071,10 @@
                         <img 
                             src="{{ avatar_path }}"
                             alt="{{ github_info.name }}" 
+                            width="144"
+                            height="144"
+                            decoding="async"
+                            fetchpriority="high"
                             class="w-36 h-36 rounded-full border-4 border-white dark:border-gray-700 shadow-lg avatar-glow"
                         >
                     </div>

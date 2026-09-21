@@ -1,0 +1,117 @@
+/*
+ * Local, page-specific icon-font subsets.
+ * Font Awesome Free and Academicons are licensed under SIL OFL 1.1;
+ * see fonts/NOTICE.md and fonts/LICENSE-FONT-AWESOME.txt.
+ * The subsets use new font names as required by OFL.
+ */
+@font-face {
+    font-family: "Homepage Icons Solid";
+    src: url("fonts/homepage-icons-solid.f5975af15b4e.woff2") format("woff2");
+    font-display: block;
+    font-style: normal;
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Homepage Icons Regular";
+    src: url("fonts/homepage-icons-regular.1d133af6d589.woff2") format("woff2");
+    font-display: block;
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Homepage Icons Brands";
+    src: url("fonts/homepage-icons-brands.dd03491219a7.woff2") format("woff2");
+    font-display: block;
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Homepage Academic Icons";
+    src: url("fonts/homepage-academic-icons.e8d61f28a6ab.woff2") format("woff2");
+    font-display: block;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.fa-solid,
+.fa-regular,
+.fa-brands,
+.ai {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-solid {
+    font-family: "Homepage Icons Solid";
+    font-weight: 900;
+}
+
+.fa-regular {
+    font-family: "Homepage Icons Regular";
+    font-weight: 400;
+}
+
+.fa-brands {
+    font-family: "Homepage Icons Brands";
+    font-weight: 400;
+}
+
+.ai {
+    font-family: "Homepage Academic Icons";
+    font-weight: 400;
+}
+
+.fa-address-card::before { content: "\f2bb"; }
+.fa-arrow-trend-up::before { content: "\e098"; }
+.fa-arrow-up-right-from-square::before { content: "\f08e"; }
+.fa-bolt::before { content: "\f0e7"; }
+.fa-book-open::before { content: "\f518"; }
+.fa-book-open-reader::before { content: "\f5da"; }
+.fa-brain::before { content: "\f5dc"; }
+.fa-briefcase::before { content: "\f0b1"; }
+.fa-building-columns::before { content: "\f19c"; }
+.fa-chart-simple::before { content: "\e473"; }
+.fa-circle-nodes::before { content: "\e4e2"; }
+.fa-clock::before { content: "\f017"; }
+.fa-code::before { content: "\f121"; }
+.fa-columns::before { content: "\f0db"; }
+.fa-envelope::before { content: "\f0e0"; }
+.fa-file-lines::before { content: "\f15c"; }
+.fa-fire::before { content: "\f06d"; }
+.fa-folder-open::before { content: "\f07c"; }
+.fa-graduation-cap::before { content: "\f19d"; }
+.fa-id-card::before { content: "\f2c2"; }
+.fa-layer-group::before { content: "\f5fd"; }
+.fa-location-dot::before { content: "\f3c5"; }
+.fa-minus::before { content: "\f068"; }
+.fa-moon::before { content: "\f186"; }
+.fa-plus::before { content: "\2b"; }
+.fa-robot::before { content: "\f544"; }
+.fa-rotate-right::before { content: "\f2f9"; }
+.fa-star::before { content: "\f005"; }
+.fa-sun::before { content: "\f185"; }
+.fa-timeline::before { content: "\e29c"; }
+.fa-toolbox::before { content: "\f552"; }
+.fa-user-graduate::before { content: "\f501"; }
+.fa-users::before { content: "\f0c0"; }
+.fa-wave-square::before { content: "\f83e"; }
+
+.fa-comments::before { content: "\f086"; }
+
+.fa-bilibili::before { content: "\e3d9"; }
+.fa-github::before { content: "\f09b"; }
+.fa-kaggle::before { content: "\f5fa"; }
+.fa-qq::before { content: "\f1d6"; }
+.fa-tiktok::before { content: "\e07b"; }
+.fa-weixin::before { content: "\f1d7"; }
+
+.ai-google-scholar::before { content: "\e9d4"; }
+.ai-orcid::before { content: "\e9d9"; }

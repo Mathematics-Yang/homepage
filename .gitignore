@@ -44,6 +44,8 @@ static_build1/
 *.tmp
 *.temp
 .cache/
+.ruff_cache/
+.tmp-*/
 
 # 备份文件
 *.bak

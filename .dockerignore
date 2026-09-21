@@ -24,17 +24,24 @@ logs/
 # 忽略敏感信息文件
 .env
 *.env
+github_token.txt
 
 # 忽略临时文件
 *.tmp
 *.temp
+node_modules/
+static_build/
+.ruff_cache/
+.tmp-*/
+background.jpg
+public/avatar.png
 
 # 忽略Docker构建过程中不需要的文件
 docker-compose.yml
 *.Dockerfile
 
 # 保留应用运行所需的所有文件
-# default/ 文件夹包含默认配置和背景图片，需要保留
+# default/ 文件夹包含默认配置，需要保留
 # templates/ 文件夹包含Flask模板，需要保留
 # config.json 会在应用启动时自动创建或从默认配置复制，不需要忽略
-# background.jpg 会在应用启动时自动创建或从默认配置复制，不需要忽略
+# public/ 中的 WebP 图片、CSS 和字体是线上资源，需要保留

@@ -2,6 +2,11 @@
 github_token.txt
 node_modules/
 static_build/
+.venv/
+__pycache__/
+.ruff_cache/
+.tmp-*/
 
 # Keep the editable source image locally; Vercel serves the optimized WebP.
 background.jpg
+public/avatar.png

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import re
@@ -11,7 +12,7 @@ from datetime import datetime
 import jinja2
 import markdown
 import requests
-from flask import Flask, abort, jsonify, render_template, send_from_directory
+from flask import Flask, abort, jsonify, render_template, request, send_from_directory
 
 
 # 读取配置文件
@@ -125,6 +126,84 @@ GITHUB_REQUEST_TIMEOUT = 8
 MAX_REPOSITORY_WORKERS = 6
 _stats_cache = {"username": None, "data": None, "cache_time": 0}
 _thread_state = threading.local()
+
+
+def find_public_asset(*filenames):
+    """Return the first matching public asset and its web-facing filename."""
+    for filename in filenames:
+        path = os.path.join(BASE_DIR, "public", filename)
+        if os.path.isfile(path):
+            return path, filename
+    return None, None
+
+
+def calculate_asset_version():
+    """Create a stable cache key from the first-party assets used by the page."""
+    digest = hashlib.sha256()
+    filenames = ["styles.css", "icons.css"]
+    background_image = config.get("background", {}).get("image", "background.webp")
+    candidates = [os.path.join(BASE_DIR, "public", filename) for filename in filenames]
+    avatar_source, _ = find_public_asset("avatar.webp", "avatar.png")
+    if avatar_source:
+        candidates.append(avatar_source)
+    candidates.extend(
+        [
+            os.path.join(BASE_DIR, background_image),
+            os.path.join(BASE_DIR, "public", background_image),
+            os.path.join(BASE_DIR, "static", background_image),
+        ]
+    )
+
+    for path in candidates:
+        if not os.path.isfile(path):
+            continue
+        digest.update(os.path.relpath(path, BASE_DIR).encode("utf-8"))
+        with open(path, "rb") as asset:
+            for chunk in iter(lambda: asset.read(64 * 1024), b""):
+                digest.update(chunk)
+    return digest.hexdigest()[:12]
+
+
+ASSET_VERSION = calculate_asset_version()
+
+
+def versioned_asset_path(path):
+    separator = "&" if "?" in path else "?"
+    return f"{path}{separator}v={ASSET_VERSION}"
+
+
+@app.after_request
+def add_cache_headers(response):
+    """Cache stable assets in browsers and the HTML briefly at the edge."""
+    if request.method not in {"GET", "HEAD"} or response.status_code not in {200, 304}:
+        return response
+
+    if request.path == "/":
+        response.headers["Cache-Control"] = (
+            "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+        )
+    elif re.fullmatch(r"/fonts/[\w-]+\.[0-9a-f]{12}\.woff2", request.path):
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    elif os.path.splitext(request.path)[1].lower() in {
+        ".css",
+        ".gif",
+        ".jpeg",
+        ".jpg",
+        ".js",
+        ".png",
+        ".svg",
+        ".webp",
+        ".woff",
+        ".woff2",
+    }:
+        response.headers["Cache-Control"] = (
+            "public, max-age=31536000, immutable"
+            if request.args.get("v") == ASSET_VERSION
+            else "public, max-age=3600, stale-while-revalidate=86400"
+        )
+    return response
+
+
 REPOSITORY_DESCRIPTIONS = {
     "cs231n-documents-2025": {
         "zh": "斯坦福 CS231n 2025 课程资料，包括课件、讨论内容及中英文作业。",
@@ -171,6 +250,25 @@ CENTERED_DIV_PATTERN = re.compile(
     r"<div(?P<attributes>[^>]*\balign\s*=\s*['\"]center['\"][^>]*)>",
     re.IGNORECASE,
 )
+MARKDOWN_IMAGE_PATTERN = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+
+
+def defer_markdown_image(match):
+    """Keep below-the-fold Markdown images out of the first-page loading."""
+    tag = match.group(0)
+    attributes = []
+    if not re.search(r"\bloading\s*=", tag, re.IGNORECASE):
+        attributes.append('loading="lazy"')
+    if not re.search(r"\bdecoding\s*=", tag, re.IGNORECASE):
+        attributes.append('decoding="async"')
+    if not re.search(r"\bfetchpriority\s*=", tag, re.IGNORECASE):
+        attributes.append('fetchpriority="low"')
+    if not attributes:
+        return tag
+
+    ending = " />" if tag.endswith("/>") else ">"
+    content = tag[:-1].rstrip().removesuffix("/").rstrip()
+    return f"{content} {' '.join(attributes)}{ending}"
 
 
 def render_markdown(markdown_text):
@@ -183,11 +281,12 @@ def render_markdown(markdown_text):
         return f'<div{attributes} markdown="1">'
 
     normalized_text = CENTERED_DIV_PATTERN.sub(enable_nested_markdown, markdown_text)
-    return markdown.markdown(
+    rendered_html = markdown.markdown(
         normalized_text,
         extensions=MARKDOWN_EXTENSIONS,
         extension_configs=MARKDOWN_EXTENSION_CONFIGS,
     )
+    return MARKDOWN_IMAGE_PATTERN.sub(defer_markdown_image, rendered_html)
 
 
 class ErrorResponse:
@@ -764,10 +863,15 @@ def index():
                     background_path = f"/static/{background_image}"
                 break
 
-        local_avatar_source = os.path.join(BASE_DIR, "public", "avatar.png")
+        if background_exists:
+            background_path = versioned_asset_path(background_path)
+
+        local_avatar_source, local_avatar_filename = find_public_asset(
+            "avatar.webp", "avatar.png"
+        )
         avatar_path = (
-            "/avatar.png"
-            if os.path.isfile(local_avatar_source)
+            versioned_asset_path(f"/{local_avatar_filename}")
+            if local_avatar_source
             else github_info.get("avatar_url", "")
         )
 
@@ -779,7 +883,8 @@ def index():
             background_exists=background_exists,
             background_path=background_path,
             avatar_path=avatar_path,
-            static_css_path="/styles.css",
+            static_css_path=versioned_asset_path("/styles.css"),
+            icon_css_path=versioned_asset_path("/icons.css"),
             tech_stack_content_zh=get_local_tech_stack("zh"),
             tech_stack_content_en=get_local_tech_stack("en"),
         )
@@ -815,6 +920,8 @@ def serve_root_file(filename):
         ".svg",
         ".css",
         ".js",
+        ".woff",
+        ".woff2",
     }
     file_ext = os.path.splitext(filename)[1].lower()
 
@@ -852,8 +959,7 @@ def generate_static_html():
         if not os.path.isfile(background_source):
             background_source = os.path.join(BASE_DIR, "public", background_image)
         background_exists = os.path.isfile(background_source)
-        avatar_source = os.path.join(BASE_DIR, "public", "avatar.png")
-        avatar_exists = os.path.isfile(avatar_source)
+        avatar_source, avatar_filename = find_public_asset("avatar.webp", "avatar.png")
         github_info = get_github_user_info()
 
         render_args = {
@@ -861,11 +967,14 @@ def generate_static_html():
             "github_info": github_info,
             "now": datetime.now(),
             "background_exists": background_exists,
-            "background_path": os.path.basename(background_image),
+            "background_path": versioned_asset_path(os.path.basename(background_image)),
             "avatar_path": (
-                "avatar.png" if avatar_exists else github_info.get("avatar_url", "")
+                versioned_asset_path(avatar_filename)
+                if avatar_source
+                else github_info.get("avatar_url", "")
             ),
-            "static_css_path": "styles.css",
+            "static_css_path": versioned_asset_path("styles.css"),
+            "icon_css_path": versioned_asset_path("icons.css"),
             "tech_stack_content_zh": get_local_tech_stack("zh"),
             "tech_stack_content_en": get_local_tech_stack("en"),
         }
@@ -884,14 +993,24 @@ def generate_static_html():
             shutil.copy2(background_source, destination)
             print(f"已复制资源文件: {background_image}")
 
-        if avatar_exists:
-            shutil.copy2(avatar_source, os.path.join(static_dir, "avatar.png"))
-            print("已复制资源文件: public/avatar.png")
+        if avatar_source:
+            shutil.copy2(avatar_source, os.path.join(static_dir, avatar_filename))
+            print(f"已复制资源文件: public/{avatar_filename}")
 
-        stylesheet_source = os.path.join(BASE_DIR, "public", "styles.css")
-        if os.path.isfile(stylesheet_source):
-            shutil.copy2(stylesheet_source, os.path.join(static_dir, "styles.css"))
-            print("已复制资源文件: public/styles.css")
+        for stylesheet in ("styles.css", "icons.css"):
+            stylesheet_source = os.path.join(BASE_DIR, "public", stylesheet)
+            if os.path.isfile(stylesheet_source):
+                shutil.copy2(stylesheet_source, os.path.join(static_dir, stylesheet))
+                print(f"已复制资源文件: public/{stylesheet}")
+
+        fonts_source = os.path.join(BASE_DIR, "public", "fonts")
+        if os.path.isdir(fonts_source):
+            shutil.copytree(
+                fonts_source,
+                os.path.join(static_dir, "fonts"),
+                dirs_exist_ok=True,
+            )
+            print("已复制资源目录: public/fonts")
 
         print("\n静态文件生成成功！")
         print(f"输出目录: {static_dir}")
