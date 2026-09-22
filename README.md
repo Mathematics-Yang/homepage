@@ -1,69 +1,186 @@
-# 个人主页
+# Jianan Yang · Personal Homepage
 
-Flask + Jinja 页面，Tailwind CSS 在本地预编译。保留中文/英文、深浅主题、背景模式和 GitHub 图表；也可以导出为静态站点。
+用于展示个人简介、研究成果、教育经历与开源项目的个人主页。基于 **Flask + Jinja + Tailwind CSS** 构建，支持动态运行，也可以导出为静态站点。
 
-## 文件布局
+[快速开始](#快速开始) · [内容与配置](#内容与配置) · [部署方式](#部署方式) · [性能设计](#性能设计) · [资源维护](#资源维护)
 
-| 路径 | 用途 |
-| --- | --- |
-| `app.py`、`templates/index.html` | 服务端逻辑与页面模板 |
-| `config.json`、`default/default_config.json` | 当前配置与缺省配置 |
-| `Introduction*.md`、`TechStack*.md` | 中英文个人介绍与工具箱内容 |
-| `public/` | 线上使用的 WebP 图片、CSS 与字体 |
-| `assets/css/input.css`、`tailwind.config.js` | Tailwind 构建输入与配置 |
-| `data/github_stats.json` | GitHub 数据快照，正常首页请求不需要实时查询 GitHub |
-| `scripts/update_github_stats.py`、`.github/workflows/` | 更新快照的脚本和定时工作流 |
-| `api/index.py`、`vercel.json` | Vercel 部署入口与缓存规则 |
-| `Dockerfile`、`deploy.sh` | Docker 与静态站点构建方式 |
-| `background.jpg`、`public/avatar.png` | 保留的原始图片；线上优先使用 WebP，部署时排除原图 |
-| `static_build/` | 生成的静态站点，可重新构建，不提交 Git |
-| `.venv/`、`node_modules/` | 本地依赖环境，不提交 Git，不上传部署 |
+## 功能概览
 
-`github_token.txt` 是本地凭据，已排除于 Git、Vercel 和 Docker 构建上下文；也可以通过环境变量 `GH_TOKEN` 或 `GITHUB_TOKEN` 提供凭据。
+- **双语内容**：支持中文与英文切换，个人介绍和工具箱分别通过 Markdown 维护。
+- **主题切换**：支持浅色、深色及跟随系统的主题设置。
+- **个人展示**：集中展示个人资料、教育与实习经历、研究成果和热门项目。
+- **GitHub 数据**：展示仓库统计、Star 趋势和语言分布，使用本地快照减少实时 API 请求。
+- **响应式布局**：适配桌面与移动设备，并提供背景专注模式。
 
-## 本地运行与构建
+## 快速开始
 
-在已激活的 Python 虚拟环境中运行：
+需要 **Python 3.10–3.13**、**Node.js 与 npm**，以及 Git。Python 依赖与版本范围分别见 [requirements.txt](requirements.txt) 和 [pyproject.toml](pyproject.toml)。
 
-```sh
-python -m pip install -r requirements.txt
-npm ci
-npm run build:css
-python app.py
+### 1. 获取项目
+
+```bash
+git clone https://github.com/Mathematics-Yang/homepage.git
+cd homepage
 ```
 
-访问 `http://localhost:5000/`。Windows 下也可直接使用 `.venv\Scripts\python.exe` 替代 `python`。
+### 2. 创建 Python 环境并安装依赖
 
-```sh
-# 修改模板中的 Tailwind 类或配色后重新生成 CSS
+按操作系统选择对应命令：
+
+<details>
+<summary>Windows · PowerShell</summary>
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+</details>
+
+<details>
+<summary>macOS / Linux · Shell</summary>
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install -r requirements.txt
+```
+
+</details>
+
+### 3. 构建样式并启动
+
+```bash
+npm ci
 npm run build:css
+```
 
-# 生成可发布到 GitHub Pages 等平台的目录
-python app.py generate_static
+**Windows：**
 
-# 按需刷新 GitHub 数据快照（此步骤需要网络）
+```powershell
+.\.venv\Scripts\python.exe app.py
+```
+
+**macOS / Linux：**
+
+```bash
+./.venv/bin/python app.py
+```
+
+浏览器打开 **[http://localhost:5000](http://localhost:5000)** 即可预览。
+
+> 下文的 `python` 命令均指项目虚拟环境中的 Python。可以激活虚拟环境，也可以像上面一样使用解释器的完整相对路径。
+
+## 内容与配置
+
+日常更新主要涉及配置文件和 Markdown，无需修改页面逻辑。
+
+| 想要修改的内容 | 对应文件 |
+| --- | --- |
+| 联系方式、教育经历、研究成果、主题与背景设置 | [config.json](config.json) |
+| 中文 / 英文个人介绍 | [Introduction.zh.md](Introduction.zh.md) / [Introduction.md](Introduction.md) |
+| 中文 / 英文工具箱 | [TechStack.zh.md](TechStack.zh.md) / [TechStack.md](TechStack.md) |
+| 页面结构与交互 | [templates/index.html](templates/index.html) |
+| Tailwind 样式与配色 | [assets/css/input.css](assets/css/input.css)、[tailwind.config.js](tailwind.config.js) |
+| GitHub 数据快照 | [data/github_stats.json](data/github_stats.json) |
+| 头像、背景、图标字体与编译后的 CSS | [public/](public/) |
+
+[app.py](app.py) 负责页面渲染、资源服务与静态导出；[default/default_config.json](default/default_config.json) 提供缺省配置。
+
+修改 Tailwind 类名或配色后，重新生成样式：
+
+```bash
+npm run build:css
+```
+
+### GitHub 数据更新
+
+首页优先读取与当前 GitHub 用户匹配的本地快照。快照可用时，无需等待 GitHub API 即可渲染；缺失或不匹配时，会尝试实时获取数据。
+
+手动刷新快照：
+
+```bash
 python scripts/update_github_stats.py
 ```
 
-## 本次性能优化
+仓库还配置了 [Update GitHub stats](.github/workflows/update-github-stats.yml) 工作流，计划每 6 小时更新一次，也支持手动触发。更换 `github_url` 后，应同步生成对应用户的快照。
 
-- 头像使用 320 × 320 WebP：321,619 字节降至 24,640 字节，原图仍保留。
-- 图标使用本地 WOFF2 子集：四套完整字体约 414 KB 缩至 8,176 字节，取消两张外部阻塞样式表，保留现有 43 个图标。
-- 工具箱的 54 个徽章标签（27 个不同 URL）使用原生懒加载、异步解码和低优先级。它们仍依赖 shields.io，只在接近视口时加载；原本就延迟加载的 GitHub 卡片和按需加载的 Chart.js 保持原有方式。
-- 页面资源链接带内容版本号；Flask 对当前版本资源和文件名含哈希的字体设置长期缓存，未带版本号的资源缓存 1 小时。Vercel 的静态 CSS/图片规则采用 1 小时缓存，字体采用 1 年缓存；首页配置 1 小时 CDN 缓存。修改资源后需重启 Flask 或重新构建/部署以更新版本号。
-- 缓存策略依据 [Vercel Cache-Control 文档](https://vercel.com/docs/caching/cache-control-headers)；线上缓存命中情况仍需在部署后检查。
+访问 GitHub API 时，可通过环境变量 `GH_TOKEN` 或 `GITHUB_TOKEN` 提供凭据。本地也支持 `github_token.txt`；该文件已排除于 Git、Vercel 和 Docker 构建上下文。请勿将 Token 写入公开配置或提交到仓库。
 
-本地验证覆盖：页面文字/图标用法与修改前一致、离线快照渲染、内嵌 JavaScript 语法、动态与静态资源路径、缓存及 304 响应、字体字符映射和轮廓、CSS 与静态站点构建。没有线上地址及可用浏览器，本次未获得真实 LCP、CLS 或 Lighthouse 分数，资源体积减少不等同于相同比例的加载时间改善。
+## 部署方式
 
-## 资源维护与清理
+### Vercel
 
-更换头像时同步更新 `public/avatar.webp`。可用 Pillow 转换原图（仅资源制作时需要，不属于服务器依赖）：
+仓库包含 [api/index.py](api/index.py) 入口和 [vercel.json](vercel.json) 配置，可用于部署 Flask 版本。
 
-```sh
+`public/styles.css` 已纳入版本控制。修改页面样式后，先在本地重新构建 CSS，再将生成文件与源码一同提交；需要 GitHub API 凭据时，在部署环境中配置环境变量。
+
+### 静态站点
+
+导出 HTML、样式、图片和字体：
+
+```bash
+npm run build:css
+python app.py generate_static
+```
+
+生成的 `static_build/` 可发布到 GitHub Pages 或其他静态托管服务。部署时上传该目录中的完整内容，而不是直接发布 Flask 源码。
+
+静态版本的个人信息与统计数据在构建时写入页面；内容更新后需重新构建并发布。`static_build/` 是可重新生成的产物，不提交 Git。
+
+### Docker
+
+先确保 CSS 已构建，再创建并运行镜像：
+
+```bash
+npm run build:css
+docker build -t personal-homepage .
+docker run --rm -p 5000:5000 personal-homepage
+```
+
+镜像使用仓库中的 [Dockerfile](Dockerfile)。此外，[deploy.sh](deploy.sh) 提供安装依赖、本地运行和静态构建等辅助命令，可在 Bash、Git Bash 或 WSL 中使用。
+
+## 性能设计
+
+页面采用预编译样式、本地图标字体和按需加载资源，减少首屏对第三方服务的依赖。
+
+| 优化项 | 调整前 | 当前方案 |
+| --- | --- | --- |
+| 头像 | PNG，约 314 KiB | WebP，约 24 KiB |
+| 图标字体 | 完整字体，约 404 KiB | 本地子集，约 8 KiB，覆盖 43 个图标 |
+| 外部图标样式表 | 2 张阻塞样式表 | 本地 CSS |
+| 工具箱徽章 | 54 个图片标签直接加载 | 原生懒加载、异步解码与低优先级 |
+
+以上体积为资源文件大小对比，实际加载速度还取决于网络与托管环境。工具箱徽章和 GitHub 概览卡片仍使用外部服务；Chart.js 在切换到分析视图时按需加载。
+
+缓存按资源类型配置：
+
+- **首页**：配置 1 小时 CDN 缓存，并允许在后台更新过期内容。
+- **静态资源**：链接带内容版本号；Flask 对当前版本资源及带哈希文件名的字体设置长期缓存。
+- **Vercel 静态文件**：CSS 和图片缓存 1 小时，字体缓存 1 年。
+
+修改资源后，重启 Flask 或重新构建、部署，以更新资源版本号。具体实现见 [app.py](app.py) 与 [vercel.json](vercel.json)。
+
+## 资源维护
+
+### 更换头像与背景
+
+线上优先使用 `public/avatar.webp` 和 `public/background.webp`。原始图片 `public/avatar.png` 与根目录下的 `background.jpg` 保留用于后续编辑，默认不会上传到 Vercel 或打包进 Docker 镜像。
+
+更换头像后，可用 Pillow 生成 WebP。Pillow 仅用于资源制作，不属于服务器运行依赖：
+
+```bash
 python -m pip install Pillow
 python -c "from PIL import Image; im=Image.open('public/avatar.png').convert('RGB'); im.thumbnail((320,320), Image.Resampling.LANCZOS); im.save('public/avatar.webp', 'WEBP', quality=85, method=6)"
 ```
 
-图标映射在 `public/icons.css`，来源与许可证见 `public/fonts/NOTICE.md`。添加新图标时，需要一并扩展相应字体子集，而不只是增加 CSS 类。
+### 添加图标
 
-已清理与根目录原图完全相同的 `default/background.jpg`、未引用的 `index.js` 和 CSS、试验字体及中间文件、静态构建产物和 Python/检查工具缓存。原有受 Git 跟踪的文件可以从历史版本恢复；临时文件已转存到系统临时目录下的 `homepage-cleanup-*` 备份。发布静态站点时按上面的命令重新生成 `static_build/`；构建和缓存目录在后续开发时可能重新产生，已加入忽略规则。
+图标映射位于 [public/icons.css](public/icons.css)。添加新图标时，需要同时扩展对应字体子集；仅添加 CSS 类名不会自动引入新字形。字体来源与许可说明见 [public/fonts/NOTICE.md](public/fonts/NOTICE.md)。
+
+### 本地生成文件
+
+`.venv/`、`node_modules/`、`static_build/` 和各类缓存目录均已加入忽略规则。它们用于本地开发或构建，不属于需要提交的项目内容。
+
+## 许可证
+
+项目代码遵循 [MIT License](LICENSE)。图标字体遵循各自的许可条款，详见 [字体许可说明](public/fonts/NOTICE.md)。
