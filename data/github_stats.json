@@ -1,11 +1,11 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-09-21T22:00:28.448898Z",
+  "generated_at": "2026-09-24T11:52:24.393260Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
-  "total_stars": 82,
+  "total_stars": 83,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
@@ -21,7 +21,7 @@
     {
       "name": "deep-learning-from-Scratch",
       "html_url": "https://github.com/Mathematics-Yang/deep-learning-from-Scratch",
-      "stargazers_count": 17,
+      "stargazers_count": 18,
       "description": "鱼书 深度学习入门：基于Python的理论与实践（包含中文版深度学习入门Jupyter Notebook笔记）",
       "language": "Jupyter Notebook",
       "pushed_at": "2025-09-12T08:46:54Z",
