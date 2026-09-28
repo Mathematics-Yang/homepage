@@ -1,16 +1,16 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-09-24T11:52:24.393260Z",
+  "generated_at": "2026-09-28T14:02:41.263583Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
-  "total_stars": 83,
+  "total_stars": 85,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
       "html_url": "https://github.com/Mathematics-Yang/cs231n-documents-2025",
-      "stargazers_count": 50,
+      "stargazers_count": 51,
       "description": "斯坦福课程 cs231n 2025 年的资料（讲座 PPT、讨论内容、英文版作业、带注释的中文版作业）/Documents for Stanford's CS231n course in 2025 (lecture PPTs, discussion contents, homework in English, and homework in Chinese with annotations)",
       "language": "Jupyter Notebook",
       "pushed_at": "2025-08-20T14:05:22Z",
@@ -21,7 +21,7 @@
     {
       "name": "deep-learning-from-Scratch",
       "html_url": "https://github.com/Mathematics-Yang/deep-learning-from-Scratch",
-      "stargazers_count": 18,
+      "stargazers_count": 19,
       "description": "鱼书 深度学习入门：基于Python的理论与实践（包含中文版深度学习入门Jupyter Notebook笔记）",
       "language": "Jupyter Notebook",
       "pushed_at": "2025-09-12T08:46:54Z",
