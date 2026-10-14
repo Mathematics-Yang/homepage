@@ -1,7 +1,7 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-10-14T17:16:24.905815Z",
+  "generated_at": "2026-10-14T21:44:52.284543Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
@@ -78,14 +78,14 @@
     {
       "name": "Jupyter Notebook",
       "color": "#DA5B0B",
-      "bytes": 24226578,
-      "percentage": 89.1
+      "bytes": 24598657,
+      "percentage": 89.2
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 2817562,
-      "percentage": 10.4
+      "bytes": 2845968,
+      "percentage": 10.3
     },
     {
       "name": "HTML",
