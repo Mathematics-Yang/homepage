@@ -1,11 +1,11 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-10-16T16:43:11.049443Z",
+  "generated_at": "2026-10-17T10:50:11.114645Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
-  "total_stars": 87,
+  "total_stars": 88,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
@@ -30,6 +30,17 @@
       "language_color": "#da5b0b"
     },
     {
+      "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
+      "html_url": "https://github.com/Mathematics-Yang/Hsuan-Tien-Lin-s-Machine-Learning-Notes",
+      "stargazers_count": 5,
+      "description": "台湾大学林轩田老师机器学习笔记（机器学习基石、机器学习技法）",
+      "language": null,
+      "pushed_at": "2025-08-21T16:04:41Z",
+      "description_zh": "台湾大学林轩田老师《机器学习基石》与《机器学习技法》课程笔记。",
+      "description_en": "Study notes for Hsuan-Tien Lin's Machine Learning Foundations and Machine Learning Techniques courses.",
+      "language_color": "#94a3b8"
+    },
+    {
       "name": "Toy-MiniMind",
       "html_url": "https://github.com/Mathematics-Yang/Toy-MiniMind",
       "stargazers_count": 4,
@@ -50,17 +61,6 @@
       "description_zh": "从零实现物理信息神经网络，以一维热传导方程为示例。",
       "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation.",
       "language_color": "#da5b0b"
-    },
-    {
-      "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
-      "html_url": "https://github.com/Mathematics-Yang/Hsuan-Tien-Lin-s-Machine-Learning-Notes",
-      "stargazers_count": 4,
-      "description": "台湾大学林轩田老师机器学习笔记（机器学习基石、机器学习技法）",
-      "language": null,
-      "pushed_at": "2025-08-21T16:04:41Z",
-      "description_zh": "台湾大学林轩田老师《机器学习基石》与《机器学习技法》课程笔记。",
-      "description_en": "Study notes for Hsuan-Tien Lin's Machine Learning Foundations and Machine Learning Techniques courses.",
-      "language_color": "#94a3b8"
     },
     {
       "name": "Deep-Learning-Advanced-Natural-Language-Processing",
