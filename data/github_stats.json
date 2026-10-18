@@ -1,11 +1,11 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-10-17T10:50:11.114645Z",
+  "generated_at": "2026-10-18T11:13:56.263338Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 11,
-  "total_stars": 88,
+  "total_stars": 89,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
@@ -30,6 +30,17 @@
       "language_color": "#da5b0b"
     },
     {
+      "name": "PINN-from-Scratch",
+      "html_url": "https://github.com/Mathematics-Yang/PINN-from-Scratch",
+      "stargazers_count": 5,
+      "description": "PINN入门级别代码（以一维热传导方程为例）/PINN from Scratch",
+      "language": "Jupyter Notebook",
+      "pushed_at": "2025-12-12T11:35:11Z",
+      "description_zh": "从零实现物理信息神经网络，以一维热传导方程为示例。",
+      "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation.",
+      "language_color": "#da5b0b"
+    },
+    {
       "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
       "html_url": "https://github.com/Mathematics-Yang/Hsuan-Tien-Lin-s-Machine-Learning-Notes",
       "stargazers_count": 5,
@@ -49,17 +60,6 @@
       "pushed_at": "2026-02-12T15:21:16Z",
       "description_zh": "基于 MiniMind 的重构实践，通过交互式笔记本从零拆解大模型核心代码。",
       "description_en": "A refactored MiniMind learning project that explains core LLM code step by step through interactive notebooks.",
-      "language_color": "#da5b0b"
-    },
-    {
-      "name": "PINN-from-Scratch",
-      "html_url": "https://github.com/Mathematics-Yang/PINN-from-Scratch",
-      "stargazers_count": 4,
-      "description": "PINN入门级别代码（以一维热传导方程为例）/PINN from Scratch",
-      "language": "Jupyter Notebook",
-      "pushed_at": "2025-12-12T11:35:11Z",
-      "description_zh": "从零实现物理信息神经网络，以一维热传导方程为示例。",
-      "description_en": "A physics-informed neural network implemented from scratch for the one-dimensional heat equation.",
       "language_color": "#da5b0b"
     },
     {
