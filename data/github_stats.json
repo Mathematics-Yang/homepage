@@ -1,10 +1,10 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-10-23T04:57:41.270435Z",
+  "generated_at": "2026-10-23T11:44:52.692103Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
-  "total_repos": 11,
+  "total_repos": 12,
   "total_stars": 90,
   "popular_repos": [
     {
@@ -13,7 +13,7 @@
       "stargazers_count": 53,
       "description": "斯坦福课程 cs231n 2025 年的资料（讲座 PPT、讨论内容、英文版作业、带注释的中文版作业）/Documents for Stanford's CS231n course in 2025 (lecture PPTs, discussion contents, homework in English, and homework in Chinese with annotations)",
       "language": "Jupyter Notebook",
-      "pushed_at": "2025-08-20T14:05:22Z",
+      "pushed_at": "2026-10-23T08:12:08Z",
       "description_zh": "斯坦福 CS231n 2025 课程资料，包括课件、讨论内容及中英文作业。",
       "description_en": "Course materials for Stanford CS231n 2025, including slides, discussions, and assignments in English and Chinese.",
       "language_color": "#da5b0b"
@@ -78,14 +78,14 @@
     {
       "name": "Jupyter Notebook",
       "color": "#DA5B0B",
-      "bytes": 24598657,
-      "percentage": 89.2
+      "bytes": 24714708,
+      "percentage": 88.8
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 2845968,
-      "percentage": 10.3
+      "bytes": 2962117,
+      "percentage": 10.6
     },
     {
       "name": "HTML",
