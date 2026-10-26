@@ -1,11 +1,11 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-10-26T13:10:40.333373Z",
+  "generated_at": "2026-10-26T22:43:22.319883Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 12,
-  "total_stars": 94,
+  "total_stars": 95,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
@@ -32,7 +32,7 @@
     {
       "name": "PINN-from-Scratch",
       "html_url": "https://github.com/Mathematics-Yang/PINN-from-Scratch",
-      "stargazers_count": 5,
+      "stargazers_count": 6,
       "description": "PINN入门级别代码（以一维热传导方程为例）/PINN from Scratch",
       "language": "Jupyter Notebook",
       "pushed_at": "2025-12-12T11:35:11Z",
