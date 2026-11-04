@@ -1,7 +1,7 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-11-04T06:32:06.973599Z",
+  "generated_at": "2026-11-04T19:49:33.003564Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 12,
@@ -84,8 +84,8 @@
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 2962117,
-      "percentage": 10.6
+      "bytes": 2975853,
+      "percentage": 10.7
     },
     {
       "name": "HTML",
