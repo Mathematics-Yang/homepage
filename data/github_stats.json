@@ -1,11 +1,11 @@
 {
   "version": 1,
   "username": "Mathematics-Yang",
-  "generated_at": "2026-11-19T07:31:41.694401Z",
+  "generated_at": "2026-11-19T20:42:29.104334Z",
   "name": "Jianan Yang",
   "avatar_url": "https://avatars.githubusercontent.com/u/80611740?v=4",
   "total_repos": 12,
-  "total_stars": 102,
+  "total_stars": 103,
   "popular_repos": [
     {
       "name": "cs231n-documents-2025",
@@ -43,7 +43,7 @@
     {
       "name": "Hsuan-Tien-Lin-s-Machine-Learning-Notes",
       "html_url": "https://github.com/Mathematics-Yang/Hsuan-Tien-Lin-s-Machine-Learning-Notes",
-      "stargazers_count": 5,
+      "stargazers_count": 6,
       "description": "台湾大学林轩田老师机器学习笔记（机器学习基石、机器学习技法）",
       "language": null,
       "pushed_at": "2025-08-21T16:04:41Z",
@@ -79,13 +79,13 @@
       "name": "Jupyter Notebook",
       "color": "#DA5B0B",
       "bytes": 24714708,
-      "percentage": 88.8
+      "percentage": 87.1
     },
     {
       "name": "Python",
       "color": "#3572A5",
-      "bytes": 2975853,
-      "percentage": 10.7
+      "bytes": 3527651,
+      "percentage": 12.4
     },
     {
       "name": "HTML",
